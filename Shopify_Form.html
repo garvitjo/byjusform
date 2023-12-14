@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>BMC From Preview</title>
+    <script type="module" crossorigin>
+(function(){const n=document.createElement("link").relList;if(n&&n.supports&&n.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))t(e);new MutationObserver(e=>{for(const s of e)if(s.type==="childList")for(const c of s.addedNodes)c.tagName==="LINK"&&c.rel==="modulepreload"&&t(c)}).observe(document,{childList:!0,subtree:!0});function r(e){const s={};return e.integrity&&(s.integrity=e.integrity),e.referrerPolicy&&(s.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?s.credentials="include":e.crossOrigin==="anonymous"?s.credentials="omit":s.credentials="same-origin",s}function t(e){if(e.ep)return;e.ep=!0;const s=r(e);fetch(e.href,s)}})();const u=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],d=["Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"],l=["2:00 PM","3:00 PM","4:00 PM","5:00 PM","6:00 PM","7:00 PM"],p="https://corsproxy.io/?"+encodeURIComponent("https://script.google.com/macros/s/AKfycbyMKMgZNfWn3sTR0blc6X1lud3DZ6w7lujEQZw7zS2mGTQ1AyHUNbm8qhpL_K2Z3nfnww/exec");function m(){const o=document.querySelector("#date-picker");f(4).forEach((r,t)=>{o.appendChild(y(r,t===0))})}function f(o){const n=[],r=new Date;for(let t=0;t<o;t++){const e=new Date(r);e.setDate(r.getDate()+t),n.push(e)}return n}function y(o,n=!1){const r=o.toISOString().split("T")[0],t=document.createElement("label");t.classList.add("radio__button"),t.setAttribute("for",r);const e=document.createElement("input");e.classList.add("radio__reset"),e.setAttribute("type","radio"),e.setAttribute("name","date"),e.setAttribute("id",r),e.setAttribute("value",r),n&&(e.setAttribute("checked",""),e.setAttribute("required","")),t.appendChild(e);const s=document.createElement("span");s.textContent=u[o.getDay()],t.appendChild(s);const c=document.createElement("span");return c.textContent=`${o.getDate()} ${d[o.getMonth()]}`,t.appendChild(c),t}function b(){const o=document.querySelector("#time-picker");l.forEach((n,r)=>{o.appendChild(h(n,r===0))})}function h(o,n=!1){const r=document.createElement("label");r.classList.add("radio__button"),r.setAttribute("for",o);const t=document.createElement("input");t.classList.add("radio__reset"),t.setAttribute("type","radio"),t.setAttribute("name","time"),t.setAttribute("value",o),t.setAttribute("id",o),n&&(t.setAttribute("checked",""),t.setAttribute("required","")),r.appendChild(t);const e=document.createTextNode(o);return r.appendChild(e),r}function g(){const o=document.forms["reg-form"],n=document.querySelector("#reg-form-submit");o.addEventListener("submit",async r=>{n.disabled=!0,r.preventDefault();let t=new FormData(o);for(var[e,s]of t.entries())console.log(e,s);try{const c=await fetch(p,{method:"POST",body:t}),{result:i,...a}=await c.json();if(i!=="success"){(console.error(a.error),n.innerHTML="Error!");postMessage({success:false})}else{n.innerHTML="Demo Booked!";postMessage({success:true})}}catch(c){console.error(c),n.disabled=!1}})}function A(){m(),b(),g()}A();
+
+</script>
+    <style>
+:root{--color-heading: #212b27;--color-text: #666666;--color-text-active: #333333;--color-input-background: #ffffff;--color-background: #f6f4ff;--color-muted: #9c9cae;--color-border-default: #cccccc;--color-border-active: #7a5cfa;--color-border-error: #ff0000;--color-border: var(--color-border-default);--color-arrow: var(--color-border-default)}body{padding:0;margin:0}.card{display:flex;padding:2rem 2.75rem;flex-direction:column;justify-content:center;align-items:stretch;gap:1.5rem;background-color:var(--color-background)}.card__header{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:.45rem}.card__title{color:var(--color-heading);text-align:center;font-family:Roboto;font-size:1.5rem;font-style:normal;font-weight:700}.card__subtitle{color:var(--color-muted);text-align:center;font-family:Roboto;font-size:.675rem;font-style:normal;font-weight:400;line-height:1rem}.card__body{display:flex;flex-direction:column;justify-content:center;align-items:stretch;gap:1rem}.card__input__wrapper{display:flex;flex-direction:column;justify-content:center;align-items:stretch;gap:.5rem}.card__input__label{color:var(--color-text);font-family:Roboto;font-size:.75rem;font-style:normal;font-weight:700;letter-spacing:.075rem;text-transform:uppercase}.card__input{border-radius:.5rem;border:1px solid var(--color-border);background-color:var(--color-input-background);padding:.875rem;color:var(--color-text);font-family:Roboto;font-size:.875rem;font-style:normal;font-weight:400}.card__input:focus{outline:none;color:var(--color-text-active);--color-border: var(--color-border-active)}.card__input:user-invalid{--color-border: var(--color-border-error)}.select__reset{-webkit-appearance:none;-moz-appearance:none;appearance:none;outline:none;box-sizing:border-box;background-color:transparent;border:none;padding:0 1em 0 0;margin:0;width:100%;font-family:inherit;font-size:inherit;cursor:inherit;line-height:inherit;grid-area:"select"}.select__reset::-ms-expand{display:none}.select__custom{cursor:pointer;display:grid;grid-template-areas:"select";align-items:center}.select__custom.card__input{padding:0;padding-right:.875rem}.select__custom select{grid-area:select;height:100%;padding:.875rem}.select__custom:after{content:"";grid-area:select;justify-self:end;width:.8em;height:.5em;background-color:var(--color-arrow);clip-path:polygon(100% 0%,0 0%,50% 100%);pointer-events:none}.select__custom:focus-within{outline:none;color:var(--color-text-active);--color-border: var(--color-border-active);--color-arrow: var(--color-border-active)}.radio__reset{display:none;-webkit-appearance:none;-moz-appearance:none;appearance:none;background-color:#fff;margin:0}.radio__wrapper{display:grid;grid-template-columns:repeat(auto-fit,minmax(var(--min-col-width, 4.2rem),1fr));gap:.625rem}.radio__wrapper[data-is-wide=true]{--min-col-width: 3.8rem}.radio__button{display:flex;flex-direction:column;padding:.5rem .7rem;justify-content:space-between;align-items:center;border-radius:.5rem;border:1.5px solid var(--color-border);gap:.25rem;text-align:center;font-family:Roboto;font-size:.7rem;font-style:normal;font-weight:700}.radio__button:has(input:checked){--color-border: var(--color-border-active);color:var(--color-border-active)}@media screen and (min-width: 600px){.card__title{font-size:2.5rem}.card__subtitle{font-size:.875rem}.card__input{font-size:1rem}.radio__button{padding:1rem 1.5rem;flex-direction:column;font-size:1rem}.radio__wrapper[data-is-wide=true]{--min-col-width: 8.375rem}}.card__footer{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:.5rem}.submit__button{display:flex;padding:1rem 3.25rem;justify-content:center;align-items:center;border:none;border-radius:.5rem;background-color:var(--color-border-active);color:#fff;font-family:Roboto;font-size:1.125rem;font-style:normal;font-weight:700;line-height:1.125rem;cursor:pointer}.submit__button:disabled{background-color:var(--color-border-default);cursor:not-allowed}
+
+</style>
+  </head>
+  <body>
+    <div id="app">
+      <form id="reg-form" class="card" method="post" name="reg-form">
+        <div class="card__header">
+          <div class="card__title">Book a Free Class</div>
+        </div>
+        <div class="card__body">
+          <div class="card__input__wrapper">
+            <label for="email-input" class="card__input__label">Email *</label>
+            <input
+              name="email"
+              type="email"
+              id="email-input"
+              class="card__input"
+              placeholder="Type here"
+              required
+            />
+          </div>
+          <div class="card__input__wrapper">
+            <label class="card__input__label">Grade *</label>
+            <!-- <div class="radio__wrapper">
+              <label for="grade-select-6" class="radio__button">
+                Grade 6
+                <input type="radio" name="grade" id="grade-select-6" value="6" checked required class="radio__reset"/>
+              </label>
+              <label for="grade-select-7" class="radio__button">
+                Grade 7
+                <input type="radio" name="grade" id="grade-select-7" value="7" class="radio__reset"/>
+              </label>
+              <label for="grade-select-8" class="radio__button">
+                Grade 8
+                <input type="radio" name="grade" id="grade-select-8" value="8" class="radio__reset"/>
+              </label>
+              <label for="grade-select-9" class="radio__button">
+                Grade 9
+                <input type="radio" name="grade" id="grade-select-9" value="9" class="radio__reset"/>
+              </label>
+            </div> -->
+            <div class="select__custom card__input">
+              <select
+                name="grade"
+                id="grade-select"
+                class="select__reset"
+                required
+              >
+                <option value="6">Grade 6</option>
+                <option value="7">Grade 7</option>
+                <option value="8">Grade 8</option>
+                <option value="9">Grade 9</option>
+              </select>
+            </div>
+          </div>
+          <div class="card__input__wrapper">
+            <label class="card__input__label">Demo Date *</label>
+            <div id="date-picker" class="radio__wrapper"></div>
+          </div>
+          <div class="card__input__wrapper">
+            <label class="card__input__label">Demo Time *</label>
+            <div
+              id="time-picker"
+              class="radio__wrapper"
+              data-is-wide="true"
+            ></div>
+          </div>
+        </div>
+
+        <div class="card__footer">
+          <button id="reg-form-submit" class="submit__button" type="submit">
+            Submit
+          </button>
+          <div class="card__subtitle">⌛ Hurry! Only 12 slots left</div>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
